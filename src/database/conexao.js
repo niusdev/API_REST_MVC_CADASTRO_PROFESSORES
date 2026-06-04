@@ -9,11 +9,11 @@ const conexao = mysql.createPool({
     // Usuário do banco
     user: 'root',
 
-    // Senha do banco
+    // Senha do banco (senha abaixo é um exemplo, coloque a sua no lugar)
     password: '123456',
     
     // Nome do banco de dados
-    database: 'api_clientes'
+    database: 'escola'
 });
 
 // Exporta conexão

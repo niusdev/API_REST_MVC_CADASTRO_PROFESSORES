@@ -1,13 +1,12 @@
 // Importa model
-const professorModel = require('../models/professorModel')
+const professorModel = require('../models/professorModel');
 
 // Listar professores
 const listarProfessores = async (req, res) => {
-
     // Busca professores no banco
-    const professores = await professorModel.listarProfessores;
+    const professores = await professorModel.listarProfessores();
 
-    // Retorna JSON
+    // Retorna JSON com os professores cadastrados
     res.json(professores);
 }
 
@@ -33,21 +32,20 @@ const buscarProfessorPorId = async (req, res) => {
 
 // Criar professor
 const criarProfessor = async (req, res) => {
-
     // Captura dados enviados
     const { nome, disciplina, email, salario } = req.body;
 
     // Validação simples
     if (!nome || !disciplina || !email || !salario) {
         return res.status(400).json({
-            mensagem: 'Todos os campos são obrigatórios'
+            mensagem: 'Todos os campos são obrigatórios!'
         });
     }
 
-    // Cria objeto
+    // Cria objeto professor
     const professor = { nome, disciplina, email, salario };
 
-    // Salva professor
+    // Salva professor no banco
     const id = await professorModel.criarProfessor(professor);
 
     // Retorna resposta
@@ -59,14 +57,13 @@ const criarProfessor = async (req, res) => {
 
 // Atualizar professor
 const atualizarProfessor = async (req, res) => {
-
     // Captura ID
     const { id } = req.params;
 
-    // Captura dados
+    // Captura dados a serem modificados
     const { nome, disciplina, email, salario } = req.body;
 
-    // Cria objeto
+    // Cria objeto professor
     const professor = { nome, disciplina, email, salario };
 
     // Atualiza professor
@@ -80,11 +77,10 @@ const atualizarProfessor = async (req, res) => {
 
 // Deletar professor
 const deletarProfessor = async (req, res) => {
-
     // Captura ID
     const { id } = req.params;
 
-    // Remove professor
+    // Remove professor do banco de dados
     await professorModel.deletarProfessor(id);
 
     // Retorna resposta

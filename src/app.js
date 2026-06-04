@@ -1,7 +1,7 @@
 // Importa express
 const express = require('express');
 
-// Cria aplicação
+// Cria aplicação usando o express
 const app = express();
 
 // Importa rotas

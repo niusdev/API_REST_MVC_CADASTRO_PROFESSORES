@@ -1,7 +1,7 @@
 // Importa conexão com banco
 const conexao = require('../database/conexao');
 
-// Função para listar professores
+// Função para listar todos os professores cadastrados
 const listarProfessores = async () => {
     // SQL de consulta
     const sql = 'SELECT * FROM professores';
@@ -15,23 +15,20 @@ const listarProfessores = async () => {
 
 // Função para buscar professor por ID
 const buscarProfessorPorId = async (id) => {
-
-    // SQL com parâmetro
+    // SQL de consulta com parâmetro
     const sql = 'SELECT * FROM professores WHERE id = ?';
 
     // Executa SQL
     const [rows] = await conexao.execute(sql, [id]);
 
-    // Retorna professores
+    // Retorna professor com respectivo ID
     return rows[0];
 }
 
 
 // Função para cadastrar professor
-
 const criarProfessor = async (professor) => {
-
-    // Desestrutura objeto
+    // Desestrutura objeto professor
     const { nome, disciplina, email, salario } = professor;
 
     // SQL de inserção
@@ -49,8 +46,7 @@ const criarProfessor = async (professor) => {
 
 // Função para atualizar professor
 const atualizarProfessor = async (id, professor) => {
-
-    // Desestrutura objeto
+    // Desestrutura objeto professor
     const { nome, disciplina, email, salario } = professor;
 
     // SQL de atualização

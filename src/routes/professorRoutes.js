@@ -4,7 +4,7 @@ const express = require('express');
 // Cria roteador
 const router = express.Router();
 
-// Importa controller
+// Importa o controller
 const professorController = require('../controllers/professorController');
 
 // Rota GET listar professores
